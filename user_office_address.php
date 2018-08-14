@@ -208,12 +208,7 @@
 								
 								<div class="r_col">
 									<h2>My Addresses</h2>
-									<?php require_once 'connection.php'; ?>
-                                    <script>
-                                        var a = "<? echo $ ?>";
-                                        alert(a);
-                                    </script>
-
+									
 									<div class="uo_adr_list">
 										<div class="item">
 											<h3>HOME Address</h3>
