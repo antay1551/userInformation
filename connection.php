@@ -43,7 +43,3 @@ class Connection {
 }
 
 
-//var_dump(Connection::get_instance()->dbh);
-
-
-//$dbclass->getColumn();

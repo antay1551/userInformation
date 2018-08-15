@@ -119,51 +119,8 @@ class Inizialization {
     static public function insert_into_table($city, $name, $area, $street, $house, $information ){
         $result_add_in_table_user = self::$con->prepare("INSERT INTO information (name,city,area,street,house,information) VALUES(:name,:city,:area,:street,:house,:information)");
         $result_add_in_table_user->execute(array(":name" => $name, ":city" => $city, ":area" => $area, ":street" => $street, ":house" => $house, ":information" => $information));
-        //print('insert');
     }
 
-    static public function select_from_table(){
-        $sql = "SELECT name, city, area, street, house FROM information";
-        $result = self::$con->query($sql);
-
-        if ($result->num_rows > 0) {
-            // output data of each row
-            while($row = $result->fetch_assoc()) {
-                echo "id: " . $row["id"]. " - city: " . $row["city"]. " - area" . $row["area"]. "<br>";
-            }
-        } else {
-            echo "0 results";
-        }
-    }
-
-
-    static public function get_all(){
-        $records = [];
-        $res = self::$con->query("SELECT * FROM information ORDER BY street");
-        while ($row = $res->fetch(PDO::FETCH_ASSOC)){
-            $records[] = $row;
-        }
-        return $records;
-    }
-
-    static public function update_all(){
-
-        $result_select = self::get_all();
-        print_r($result_select);
-        $count = 0;
-        while ($count < count($result_select)){
-            //$res = self::$con->query("UPDATE information SET name = '111' WHERE id = $count");
-            echo"$count";
-            $count++;
-        }
-        //    , city= $result_select[$count]['city'], area= $result_select[$count]['area'], street= $result_select[$count]['street'], house = $result_select[$count]['house'], information = $result_select[$count]['information']
-
-        //$res = self::$con->query("UPDATE information SET name = 'Alfred Schmidt', city= 'Frankfurt' WHERE id = 1");
-        //while ($row = $res->fetch(PDO::FETCH_ASSOC)){
-        //    $records[] = $row;
-       // }
-        //return $records;
-    }
 }
 
 
@@ -171,22 +128,11 @@ class Inizialization {
 
 
 $name = $_POST['name'];
-echo"$name\n";
-
 $city = $_POST['city'];
-echo"$city\n";
-
 $area = $_POST['area'];
-echo"$area\n";
-
 $street = $_POST['street'];
-echo"$street\n";
-
 $house = $_POST['house'];
-echo"$house\n";
-
 $information = $_POST['information'];
-echo"$information\n";
 
 
 require_once 'connection.php';
@@ -195,13 +141,6 @@ if (isset($_POST['name']) && isset($_POST['city'] ) && isset($_POST['area'] )&& 
 }
 
 
-echo"!!!!!!!!!!!!!!!!!!!!!!";
-print($obj_class_Connection->get_name());
-print($obj_class_Connection->get_city());
-print($obj_class_Connection->get_area());
-print($obj_class_Connection->get_street());
-print($obj_class_Connection->get_house());
-print($obj_class_Connection->get_information());
 $obj_class_Connection->insert_into_table($obj_class_Connection->get_city(),
     $obj_class_Connection->get_name(),
     $obj_class_Connection->get_area(),
@@ -209,11 +148,3 @@ $obj_class_Connection->insert_into_table($obj_class_Connection->get_city(),
     $obj_class_Connection->get_house(),
     $obj_class_Connection->get_information()
 );
-$obj_class_Connection->select_from_table();
-echo"1111111\n";
-//print_r( $obj_class_Connection->get_all() );
-$res_select=Inizialization::update_all();
-//session_start();
-
-//$_SESSION["res"] =[];
-//$_SESSION["res"] = $res_select;

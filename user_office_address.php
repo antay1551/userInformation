@@ -11,7 +11,10 @@
 
 </head>
 
-<body>
+<body  onload="load()">
+<script>
+    //location.reload();
+</script>
 	<div class="cbc">
 		<div class="main">
 			<header>
@@ -205,27 +208,30 @@
 										</div>
 									</form>
 								</div>
-								
-								<div class="r_col">
-									<h2>My Addresses</h2>
-									
-									<div class="uo_adr_list">
-										<div class="item">
-											<h3>HOME Address</h3>
-											<p>Dubai, Business Bay Area, Sheikh Zayed Road, Single </p>
-											<div class="actbox">
-												<a href="#" class="bcross"></a>
-											</div>
-										</div>
-										<div class="item">
-											<h3>Work Address</h3>
-											<p>Dubai, Business Bay Area, Sheikh Zayed Road, Single<br/>Business Tower, Suite 2204</p>
-											<div class="actbox">
-												<a href="#" class="bcross"></a>
-											</div>
-										</div>										
-									</div>
-								</div>
+
+                                <div class="r_col">
+                                    <h2>My Addresses</h2>
+                                    <div class="uo_adr_list">
+                                        <?php require_once 'select.php';
+                                        $obj_selectUser= new selectUser();
+                                        $res_select=$obj_selectUser->get_all();
+                                        for($i=0;$i<count($res_select);$i++){
+                                        $all_str=$res_select[$i]['name'].', '.$res_select[$i]['street'].', '.$res_select[$i]['house'].', '.$res_select[$i]['information'];
+                                        ?>
+                                        <div class="item">
+                                            <h3>HOME Address</h3>
+                                            <?php
+                                             echo "$all_str";
+                                            ?>
+                                            <div class="actbox">
+                                                <a href="#" class="bcross"></a>
+                                            </div>
+                                        </div>
+                                        <?php }
+                                        ?>
+                                    </div>
+                                </div>
+
 							</div>
 						</div>
 					</div>
